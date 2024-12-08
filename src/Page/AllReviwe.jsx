@@ -9,7 +9,7 @@ const AllReviwe = () => {
   const [sortType, setSortType] = useState("");
 
   useEffect(() => {
-    fetch('http://localhost:5000/added-review')
+    fetch('https://b10-a10-server-side-developer-jaber.vercel.app/added-review')
       .then(res => res.json())
       .then(data => {
         setReviews(data)

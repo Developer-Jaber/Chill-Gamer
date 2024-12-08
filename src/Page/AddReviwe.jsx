@@ -21,7 +21,7 @@ const AddReviwe = () => {
         const addedReview = {coverImage,title,description,rating,year,genre,email,name}
         console.log(addedReview);
 
-        fetch('http://localhost:5000/added-review',{
+        fetch('https://b10-a10-server-side-developer-jaber.vercel.app/added-review',{
           method: 'POST',
           headers: {
             'content-type' : 'application/json'

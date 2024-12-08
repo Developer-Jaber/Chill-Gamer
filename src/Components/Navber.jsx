@@ -28,7 +28,7 @@ const Navber = () => {
         <Link to='/myReviews'>My Reviews</Link>
       </li>
       <li>
-        <Link>Game WatchList</Link>
+        <Link to='/myWatchlist'>Game WatchList</Link>
       </li>
     </>
   )

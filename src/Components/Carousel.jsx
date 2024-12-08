@@ -37,8 +37,8 @@ const Carousel = () => {
         onAutoplayTimeLeft={onAutoplayTimeLeft}
         className='mySwiper'
       >
-        <SwiperSlide><img className='h-[600px]' src="https://i.ibb.co/FKcprrz/game-Banner1.jpg"  alt="" /></SwiperSlide>
         <SwiperSlide><img src="https://i.ibb.co/3yGHMF1/game-Banner2.jpg" alt="" /></SwiperSlide>
+        <SwiperSlide><img src="https://i.ibb.co/FKcprrz/game-Banner1.jpg"  alt="" /></SwiperSlide>
         <SwiperSlide><img src="https://i.ibb.co/GVBG1sX/banner5.jpg" alt="" /></SwiperSlide>
         <SwiperSlide><img src="https://i.ibb.co/SX4tjPZ/banner4.jpg" alt="" /></SwiperSlide>
         <SwiperSlide><img src="https://i.ibb.co/qdQdrxG/banner3.jpg" alt="" /></SwiperSlide>

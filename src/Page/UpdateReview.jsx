@@ -49,7 +49,7 @@ const UpdateReview = () => {
       name
     }
 
-    fetch(`http://localhost:5000/added-review/${_id}`, {
+    fetch(`https://b10-a10-server-side-developer-jaber.vercel.app/added-review/${_id}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json'

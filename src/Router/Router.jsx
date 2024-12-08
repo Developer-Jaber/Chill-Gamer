@@ -11,6 +11,7 @@ import AllReviwe from '../Page/AllReviwe'
 import ReviewDetails from '../Page/ReviewDetails'
 import MyReviews from '../Page/MyReviews'
 import UpdateReview from '../Page/UpdateReview'
+import Watchlist from '../Page/Watchlist'
 
 
 
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home></Home>,
-        loader: () => fetch('http://localhost:5000/games'),
+        loader: () => fetch('https://b10-a10-server-side-developer-jaber.vercel.app/games'),
       },
       {
         path: '/login',
@@ -44,7 +45,7 @@ const router = createBrowserRouter([
       {
         path: '/reviews/:id',
         element: <PrivetRoute><ReviewDetails></ReviewDetails></PrivetRoute>,
-        loader: ({params})=>fetch(`http://localhost:5000/added-review/${params.id}`)
+        loader: ({params})=>fetch(`https://b10-a10-server-side-developer-jaber.vercel.app/added-review/${params.id}`)
       },
       {
         path: '/myReviews',
@@ -53,7 +54,11 @@ const router = createBrowserRouter([
       {
         path: '/reviews/update_review/:id',
         element: <UpdateReview></UpdateReview>,
-        loader: ({params})=>fetch(`http://localhost:5000/added-review/${params.id}`)
+        loader: ({params})=>fetch(`https://b10-a10-server-side-developer-jaber.vercel.app/added-review/${params.id}`)
+      },
+      {
+        path: '/myWatchlist',
+        element: <PrivetRoute><Watchlist></Watchlist></PrivetRoute>
       }
     ]
   }

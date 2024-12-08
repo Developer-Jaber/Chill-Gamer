@@ -22,7 +22,7 @@ const SignUp = () => {
 
       const newUSer = {name,photoURL,email}
       // save user data to database
-      fetch('http://localhost:5000/users',{
+      fetch('https://b10-a10-server-side-developer-jaber.vercel.app/users',{
         method: 'POST',
         headers: {
           'content-type' : 'application/json'

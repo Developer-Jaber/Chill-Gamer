@@ -4,6 +4,7 @@ import {
   FaEdit,
   FaFacebook,
   FaGooglePlay,
+  FaHeart,
   FaPinterest,
   FaStar,
   FaTrash,
@@ -42,7 +43,7 @@ const ReviewDetails = () => {
       confirmButtonText: 'Yes, Update it!'
     }).then(result => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/added-review/${_id}`, {
+        fetch(`https://b10-a10-server-side-developer-jaber.vercel.app/added-review/${_id}`, {
           method: 'DELETE'
         })
           .then(res => res.json())
@@ -61,12 +62,28 @@ const ReviewDetails = () => {
       }
     })
   }
+
+  const handleAddWachlist = () =>{
+    fetch('http://localhost:5000/watchlist',{
+      method: 'POST',
+      headers: {
+        'content-type' : 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(res=>res.json())
+    .then(data=>{
+      if(data.insertedId){
+        console.log('wachlist item is added',data);
+      }
+    })
+  }
   return (
     <div>
       <div className='bg-gray-100 p-8 min-h-screen'>
         <div className='bg-white shadow-lg mx-auto rounded-lg max-w-4xl overflow-hidden'>
           <div className='px-6'>
-            <div>
+            <div className='flex justify-end gap-4'>
               {user?.email === email ? (
                 <div className='flex justify-end gap-4 my-5'>
                   <Link to={`/reviews/update_review/${_id}`}>
@@ -79,6 +96,9 @@ const ReviewDetails = () => {
               ) : (
                 <></>
               )}
+              <button onClick={handleAddWachlist}>
+                <FaHeart className='text-3xl text-red-500'></FaHeart>
+              </button>
             </div>
             <h2 className='mb-4 font-bold text-3xl text-gray-800'>
               {title} || games of {year} || Genre : {genre}

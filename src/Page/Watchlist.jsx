@@ -1,21 +1,19 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import ReviewCard from '../Components/ReviewCard'
-import { AuthContext } from '../Auth/AuthProvaider'
 
-const MyReviews = () => {
-    const {user} = useContext(AuthContext)
-    const [myReview,setMyReview] = useState([])
-    useEffect(()=>{
-        fetch(`https://b10-a10-server-side-developer-jaber.vercel.app/added-review/email/${user.email}`)
-        .then(res => res.json())
-        .then(data => setMyReview(data))
-    },[])
+const Watchlist = () => {
+  const [watchlist, setWatchlist] = useState([])
+  useEffect(() => {
+    fetch('http://localhost:5000/watchlist')
+      .then(res => res.json())
+      .then(data => setWatchlist(data))
+  }, [])
   return (
     <div>
       <div className='bg-base-100 hero'>
         <div className='text-center hero-content'>
           <div className='max-w-2xl'>
-            <h1 className='font-bold text-4xl'>My Reviews</h1>
+            <h1 className='font-bold text-4xl'>All Game Reviews</h1>
             <p className='py-6'>
               Dive into the world of gaming with our comprehensive collection of
               game reviews. Explore detailed insights, ratings, and personal
@@ -25,17 +23,16 @@ const MyReviews = () => {
               recommendations. Stay informed and find the best games to match
               your preferences!
             </p>
-            {/* <button className='btn btn-primary'>Explore Details</button> */}
           </div>
         </div>
       </div>
       <section className='mx-auto w-8/12'>
-        {myReview.map(card => (
-          <ReviewCard key={card._id} review={card}></ReviewCard>
-        ))}
+        {
+            watchlist.map(card=><ReviewCard key={card._id} review={card}></ReviewCard>)
+        }
       </section>
     </div>
   )
 }
 
-export default MyReviews
+export default Watchlist

@@ -5,7 +5,7 @@ const GameGenric = () => {
     const [genric,setGenric] = useState([]);
 
     useEffect(()=>{
-        fetch('http://localhost:5000/populer-genric')
+        fetch('https://b10-a10-server-side-developer-jaber.vercel.app/populer-genric')
         .then(res=>res.json())
         .then(data=>setGenric(data))
     },[])
