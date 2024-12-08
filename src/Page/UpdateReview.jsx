@@ -1,0 +1,218 @@
+import { useContext } from 'react'
+import { AuthContext } from '../Auth/AuthProvaider'
+import { useLoaderData } from 'react-router-dom'
+import Swal from 'sweetalert2'
+
+const UpdateReview = () => {
+  const { user } = useContext(AuthContext)
+  const {
+    _id,
+    coverImage,
+    title,
+    description,
+    rating,
+    year,
+    genre,
+    email,
+    displayName
+  } = useLoaderData()
+  const genres = [
+    'Action',
+    'RPG',
+    'Adventure',
+    'Strategy',
+    'Puzzle',
+    'Simulation'
+  ]
+
+  const handleUpdateReviwe = e => {
+    e.preventDefault()
+    const form = e.target
+    const coverImage = form.coverImage.value
+    const title = form.title.value
+    const description = form.description.value
+    const rating = form.rating.value
+    const year = form.year.value
+    const genre = form.genre.value
+    const email = form.email.value
+    const name = form.name.value
+
+    form.reset()
+    const updatedReview = {
+      coverImage,
+      title,
+      description,
+      rating,
+      year,
+      genre,
+      email,
+      name
+    }
+
+    fetch(`http://localhost:5000/added-review/${_id}`, {
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(updatedReview)
+    })
+      .then(res => res.json())
+      .then(data => {
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!'
+        }).then(result => {
+          if (result.isConfirmed) {
+            if (data.modifiedCount > 0) {
+              Swal.fire({
+                title: 'Deleted!',
+                text: 'Your file has been deleted.',
+                icon: 'success'
+              })
+            }
+          }
+        })
+      })
+  }
+  return (
+    <div className='bg-white shadow-md mx-auto p-6 rounded-lg max-w-3xl'>
+      <h2 className='mb-6 font-semibold text-2xl text-blue-600 text-center'>
+        Update Your Review
+      </h2>
+      <form onSubmit={handleUpdateReviwe}>
+        <div className='gap-6 grid grid-cols-1'>
+          <div className='form-control'>
+            <label className='label'>
+              <span className='label-text'>Game Cover Image URL</span>
+            </label>
+            <input
+              type='url'
+              defaultValue={coverImage}
+              name='coverImage'
+              placeholder='Enter game cover image URL'
+              className='input-bordered w-full input'
+              required
+            />
+          </div>
+
+          <div className='form-control'>
+            <label className='label'>
+              <span className='label-text'>Game Title</span>
+            </label>
+            <input
+              type='text'
+              defaultValue={title}
+              name='title'
+              placeholder='Enter game title'
+              className='input-bordered w-full input'
+              required
+            />
+          </div>
+
+          <div className='form-control'>
+            <label className='label'>
+              <span className='label-text'>Review Description</span>
+            </label>
+            <textarea
+              placeholder='Write your review here...'
+              name='description'
+              defaultValue={description}
+              className='textarea-bordered w-full textarea'
+              required
+            />
+          </div>
+
+          <div className='form-control'>
+            <label className='label'>
+              <span className='label-text'>Rating</span>
+            </label>
+            <input
+              type='number'
+              name='rating'
+              defaultValue={rating}
+              placeholder='Rate the game (1-10)'
+              className='input-bordered w-full input'
+              required
+              min='1'
+              max='10'
+            />
+          </div>
+
+          <div className='form-control'>
+            <label className='label'>
+              <span className='label-text'>Publishing Year</span>
+            </label>
+            <input
+              type='number'
+              name='year'
+              defaultValue={year}
+              placeholder='Enter the publishing year'
+              className='input-bordered w-full input'
+              required
+            />
+          </div>
+
+          <div className='form-control'>
+            <label className='label'>
+              <span className='label-text'>Genres</span>
+            </label>
+            <select
+              name='genre'
+              defaultValue={genre}
+              className='w-full select-bordered select'
+              required
+            >
+              {/* <option value="" disabled>Select Genre</option>
+              <option value="Action">Action</option>
+              <option value="RPG">RPG</option>
+              <option value="Adventure">Adventure</option>
+              <option value="Sports">Sports</option> */}
+              {genres.map((option, index) => (
+                <option key={index}>{option}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className='form-control'>
+            <label className='label'>
+              <span className='label-text'>User Email (Pre-filled)</span>
+            </label>
+            <input
+              type='email'
+              name='email'
+              className='input-bordered w-full input'
+              value={user && user?.email}
+              readOnly
+            />
+          </div>
+
+          <div className='form-control'>
+            <label className='label'>
+              <span className='label-text'>User Name (Pre-filled)</span>
+            </label>
+            <input
+              type='text'
+              name='name'
+              className='input-bordered w-full input'
+              value={user && user?.displayName}
+              readOnly
+            />
+          </div>
+
+          <div className='form-control mt-6'>
+            <button type='submit' className='w-full text-white btn btn-primary'>
+              Submit Review
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  )
+}
+
+export default UpdateReview
