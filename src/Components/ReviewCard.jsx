@@ -10,6 +10,7 @@ const ReviewCard = ({ review }) => {
       </figure>
       <div className='card-body'>
         <h2 className='card-title'>{review.title}</h2>
+        <h2>{review.genre}</h2>
         <div className='flex'>
         <p>Rating: {review.rating}<FaStar className='text-yellow-400'></FaStar></p>
         </div>
