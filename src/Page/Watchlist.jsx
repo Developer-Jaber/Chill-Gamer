@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import ReviewCard from '../Components/ReviewCard'
-import NoData from './NoData'
+
 
 const Watchlist = () => {
   const [watchlist, setWatchlist] = useState([])
@@ -10,9 +10,6 @@ const Watchlist = () => {
       .then(data => setWatchlist(data))
   }, [])
 
-  if(watchlist.length === 0){
-    return <NoData></NoData>
-   } 
   return (
     <div>
       <div className='bg-base-100 hero'>
