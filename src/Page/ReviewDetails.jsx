@@ -64,7 +64,7 @@ const ReviewDetails = () => {
   }
 
   const handleAddWachlist = () =>{
-    fetch('http://localhost:5000/watchlist',{
+    fetch('https://b10-a10-server-side-developer-jaber.vercel.app/watchlist',{
       method: 'POST',
       headers: {
         'content-type' : 'application/json'
