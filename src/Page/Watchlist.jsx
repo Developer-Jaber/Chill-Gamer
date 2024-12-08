@@ -4,7 +4,7 @@ import ReviewCard from '../Components/ReviewCard'
 const Watchlist = () => {
   const [watchlist, setWatchlist] = useState([])
   useEffect(() => {
-    fetch('http://localhost:5000/watchlist')
+    fetch('https://b10-a10-server-side-developer-jaber.vercel.app/watchlist')
       .then(res => res.json())
       .then(data => setWatchlist(data))
   }, [])

@@ -6,7 +6,7 @@ const BestRatedGameCard = ({ data }) => {
 
   return (
 
-      <div className='bg-base-100 shadow-xl text-black card'>
+      <div className='bg-base-100 shadow-xl card'>
         <figure className='px-5 pt-5'>
           <img src={imageUrl} alt='Shoes' className='rounded-xl h-80' />
         </figure>

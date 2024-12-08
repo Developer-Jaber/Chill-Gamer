@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../Auth/AuthProvaider'
 import ThemeToggle from './ThemeToggle'
 
+
 const Navber = () => {
   const { user, signout } = useContext(AuthContext)
   const navigate = useNavigate()
