@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import ReviewCard from '../Components/ReviewCard'
 import { AuthContext } from '../Auth/AuthProvaider'
+import NoData from './NoData'
 
 const MyReviews = () => {
     const {user} = useContext(AuthContext)
@@ -10,6 +11,10 @@ const MyReviews = () => {
         .then(res => res.json())
         .then(data => setMyReview(data))
     },[])
+
+   if(myReview.length === 0){
+    return <NoData></NoData>
+   } 
   return (
     <div>
       <div className='bg-base-100 hero'>

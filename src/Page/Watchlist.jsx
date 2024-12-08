@@ -8,6 +8,10 @@ const Watchlist = () => {
       .then(res => res.json())
       .then(data => setWatchlist(data))
   }, [])
+
+  if(watchlist.length === 0){
+    return <NoData></NoData>
+   } 
   return (
     <div>
       <div className='bg-base-100 hero'>

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../Auth/AuthProvaider'
+import Swal from 'sweetalert2'
 
 const SignUp = () => {
   const {createUser ,setUser} = useContext(AuthContext)
@@ -35,6 +36,14 @@ const SignUp = () => {
           console.log('user created to db', data);
         }
       })
+
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Your work has been saved",
+        showConfirmButton: false,
+        timer: 1500
+      });
     })
     .catch(error=>{
       console.log(error);

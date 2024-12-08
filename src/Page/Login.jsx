@@ -1,10 +1,15 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { FaGoogle, FaGithub } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../Auth/AuthProvaider';
+import Swal from 'sweetalert2';
 
 const Login = () => {
   const {loginUser , googlePopupLogin} = useContext(AuthContext);
+  const location = useLocation();
+  const [error,setError] = useState({})
+ 
+  const navigate = useNavigate()
 
   // adding handeller login with email/pss
   const hanndleLoginuser = (e) => {
@@ -17,15 +22,30 @@ const Login = () => {
     loginUser(email,password)
     .then(result=>{
       console.log(result.user,'user login succesfull');
+      navigate(location?.state ? location.state : '/');
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Your work has been saved",
+        showConfirmButton: false,
+        timer: 1500
+      });
     })
     .catch(error=>{
-      console.log(error);
+      setError({...error, login: error.code})
     })
   }
 
   // adding handeller for popup google login
   const googlePopupHandeller = () =>{
     googlePopupLogin()
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Your work has been saved",
+      showConfirmButton: false,
+      timer: 1500
+    });
   } 
   return (
     <div className='flex justify-center items-center bg-gray-100 min-h-screen'>
@@ -77,6 +97,13 @@ const Login = () => {
               required
             />
           </div>
+          {
+            error.login && <label className='label'>
+            <span className='label-text'>
+               <p className='font-bold text-red-500'>{error.login}</p>
+            </span>
+        </label>
+          }
 
           <div className='flex justify-between items-center'>
             <label className='gap-3 cursor-pointer label'>
