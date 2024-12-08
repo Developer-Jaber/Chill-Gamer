@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import ReviewCard from '../Components/ReviewCard'
+import NoData from './NoData'
 
 const Watchlist = () => {
   const [watchlist, setWatchlist] = useState([])
