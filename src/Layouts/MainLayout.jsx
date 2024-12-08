@@ -10,7 +10,7 @@ const MainLayout = () => {
                     <Navber></Navber>
                 </nav>
             </header>
-            <main>
+            <main className="py-10">
                 <Outlet></Outlet>
             </main>
             <footer>
