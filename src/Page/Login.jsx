@@ -21,12 +21,11 @@ const Login = () => {
     form.reset()
     loginUser(email,password)
     .then(result=>{
-      console.log(result.user,'user login succesfull');
       navigate(location?.state ? location.state : '/');
       Swal.fire({
         position: "top-end",
         icon: "success",
-        title: "Your work has been saved",
+        title: "Your Login has been saved",
         showConfirmButton: false,
         timer: 1500
       });

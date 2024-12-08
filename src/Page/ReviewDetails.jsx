@@ -74,7 +74,13 @@ const ReviewDetails = () => {
     .then(res=>res.json())
     .then(data=>{
       if(data.insertedId){
-        console.log('wachlist item is added',data);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Your work has been saved",
+          showConfirmButton: false,
+          timer: 1500
+        });
       }
     })
   }

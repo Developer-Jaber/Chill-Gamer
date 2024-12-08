@@ -7,7 +7,6 @@ import Loding from "../Page/Loding";
 const PrivetRoute = ({children}) => {
     const {user ,loder} = useContext(AuthContext);
     const location = useLocation()
-    console.log(location);
     
 
     if(loder){

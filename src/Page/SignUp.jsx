@@ -33,20 +33,24 @@ const SignUp = () => {
       .then(res=> res.json())
       .then(data=> {
         if(data.insertedId){
-          console.log('user created to db', data);
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your work has been saved",
+            showConfirmButton: false,
+            timer: 1500
+          });
         }
       })
-
+    })
+    .catch(error=>{
       Swal.fire({
         position: "top-end",
-        icon: "success",
+        icon: "error",
         title: "Your work has been saved",
         showConfirmButton: false,
         timer: 1500
       });
-    })
-    .catch(error=>{
-      console.log(error);
     })
   }
   return (

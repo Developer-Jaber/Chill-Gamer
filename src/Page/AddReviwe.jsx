@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../Auth/AuthProvaider";
+import Swal from "sweetalert2";
 
 const AddReviwe = () => {
     const {user} = useContext(AuthContext);
@@ -19,7 +20,7 @@ const AddReviwe = () => {
 
         form.reset();
         const addedReview = {coverImage,title,description,rating,year,genre,email,name}
-        console.log(addedReview);
+      
 
         fetch('https://b10-a10-server-side-developer-jaber.vercel.app/added-review',{
           method: 'POST',
@@ -31,7 +32,13 @@ const AddReviwe = () => {
         .then(res=>res.json())
         .then(data=>{
           if(data.insertedId){
-            console.log('reviwe is added',data);
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Your work has been saved",
+              showConfirmButton: false,
+              timer: 1500
+            });
           }
         })
     }
