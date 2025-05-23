@@ -1,166 +1,144 @@
 import { useContext } from 'react'
-import { FaUser } from 'react-icons/fa'
+import { FaUser, FaGamepad, FaHome, FaPlus, FaList, FaHeart } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../Auth/AuthProvaider'
 import ThemeToggle from './ThemeToggle'
 import { Tooltip } from 'react-tooltip'
 
-const Navber = () => {
+const Navbar = () => {
   const { user, signout } = useContext(AuthContext)
   const navigate = useNavigate()
-  // handlesignoutUser
+
   const handleSignOut = () => {
     signout()
     navigate('/')
   }
 
-  const link = (
+  const navLinks = (
     <>
       <li>
-        <Link to='/'>Home</Link>
+        <Link to="/" className="flex items-center gap-2 hover:text-primary">
+          <FaHome className="text-lg" /> Home
+        </Link>
       </li>
       <li>
-        <Link to='/reviews'>All Reviews</Link>
+        <Link to="/games" className="flex items-center gap-2 hover:text-primary">
+          <FaGamepad className="text-lg" /> Games
+        </Link>
       </li>
       <li>
-        <Link to='/addReview'>Add Review </Link>
+        <Link to="/add-review" className="flex items-center gap-2 hover:text-primary">
+          <FaPlus className="text-lg" /> Add Review
+        </Link>
       </li>
       <li>
-        <Link to='/myReviews'>My Reviews</Link>
+        <Link to="/my-reviews" className="flex items-center gap-2 hover:text-primary">
+          <FaList className="text-lg" /> My Reviews
+        </Link>
       </li>
       <li>
-        <Link to='/myWatchlist'>Game WatchList</Link>
+        <Link to="/watchlist" className="flex items-center gap-2 hover:text-primary">
+          <FaHeart className="text-lg" /> Watchlist
+        </Link>
       </li>
     </>
   )
+
   return (
-    <div className='bg-base-100 my-7 w-9/12 navbar'>
-      <div className='navbar-start'>
-        <div className='dropdown'>
-          <div tabIndex={0} role='button' className='lg:hidden btn btn-ghost'>
+    <div className="top-0 z-50 fixed bg-base-100 shadow-lg px-4 md:px-8 navbar">
+      <div className="navbar-start">
+        <div className="dropdown">
+          <label tabIndex={0} className="lg:hidden btn btn-ghost">
             <svg
-              xmlns='http://www.w3.org/2000/svg'
-              className='w-5 h-5'
-              fill='none'
-              viewBox='0 0 24 24'
-              stroke='currentColor'
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-5 h-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
             >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                strokeWidth='2'
-                d='M4 6h16M4 12h8m-8 6h16'
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
             </svg>
-          </div>
+          </label>
           <ul
             tabIndex={0}
-            className='z-50 bg-base-100 shadow mt-3 p-2 rounded-box w-52 dropdown-content menu menu-sm'
+            className="z-[1] gap-2 bg-base-100 shadow mt-3 p-2 rounded-box w-52 menu menu-sm dropdown-content"
           >
-            {link}
+            {navLinks}
           </ul>
         </div>
-        <a className='font-bold md:text-3xl'>Chill Gamer</a>
+        <Link to="/" className="text-primary text-xl md:text-2xl normal-case btn btn-ghost">
+          🎮 ChillGamer
+        </Link>
       </div>
-      <div className='lg:flex hidden navbar-center'>
-        <ul className='px-1 menu menu-horizontal'>{link}</ul>
+
+      <div className="hidden lg:flex navbar-center">
+        <ul className="gap-4 px-1 menu menu-horizontal">{navLinks}</ul>
       </div>
-      <div className='navbar-end'>
-        <div className='md:block hidden'>
-          <div className='dropdown dropdown-end'>
-            <div
-              tabIndex={0}
-              role='button'
-              className='btn btn-circle btn-ghost'
-            >
-              <div className='indicator'>
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  className='w-8 h-8'
-                  fill='none'
-                  viewBox='0 0 24 24'
-                  stroke='currentColor'
-                >
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth='2'
-                    d='M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z'
-                  />
-                </svg>
-                <span className='badge badge-lg indicator-item'>0</span>
-              </div>
-            </div>
-            <div
-              tabIndex={0}
-              className='z-50 bg-base-100 shadow mt-3 w-52 card card-compact dropdown-content'
-            >
-              <div className='card-body'>
-                <span className='font-bold text-lg'>8 Items</span>
-                <span className='text-info'>Subtotal: $999</span>
-                <div className='card-actions'>
-                  <button className='btn-block btn btn-primary'>
-                    View cart
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className='dropdown dropdown-end'>
-          <a id='my-anchor-element'>
-            <div
-              tabIndex={0}
-              role='button'
-              className='mx-10 avatar btn btn-circle btn-ghost'
-            >
-              <div className='rounded-full w-10'>
-                {user && user?.email ? (
-                  <img src={user && user?.photoURL} alt='' />
-                ) : (
-                  <FaUser className='text-4xl'></FaUser>
-                )}
-              </div>
-            </div>
-            <ul
-              tabIndex={0}
-              className='z-50 bg-base-100 shadow mt-3 p-2 rounded-box w-52 dropdown-content menu menu-sm'
-            >
-              {user && user?.email ? (
-                <>
-                  <li>
-                    <a className='justify-between'>
-                      Profile
-                      <span className='badge'>New</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a>Settings</a>
-                  </li>
-                  <li>
-                    <button onClick={handleSignOut} type='button'>
-                      Logout
-                    </button>
-                  </li>
-                </>
-              ) : (
-                <li>
-                  <Link to='/login'>Login</Link>
-                </li>
-              )}
-            </ul>
-          </a>
-          <Tooltip
-            anchorSelect='#my-anchor-element'
-            content={user?.displayName}
+
+      <div className="gap-4 navbar-end">
+        <div className="hidden md:block form-control">
+          <input
+            type="text"
+            placeholder="Search games..."
+            className="input-bordered w-24 md:w-auto input"
           />
         </div>
-        <div className='lg:block hidden'>
-          <ThemeToggle></ThemeToggle>
+
+        <ThemeToggle />
+
+        <div className="dropdown dropdown-end">
+          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+            <div className="flex justify-center items-center bg-base-content/10 rounded-full w-10">
+              {user?.photoURL ? (
+                <img src={user.photoURL} alt="profile" className="rounded-full" />
+              ) : (
+                <FaUser className="text-base-content/70 text-xl" />
+              )}
+            </div>
+          </label>
+          <ul
+            tabIndex={0}
+            className="z-[1] bg-base-100 shadow mt-3 p-2 rounded-box w-52 menu menu-sm dropdown-content"
+          >
+            {user ? (
+              <>
+                <li className="menu-title">
+                  <span>Welcome, {user.displayName || 'Gamer'}</span>
+                </li>
+                <li>
+                  <Link to="/profile" className="justify-between">
+                    Profile
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/settings">Settings</Link>
+                </li>
+                <li>
+                  <button
+                    onClick={handleSignOut}
+                    className="hover:bg-error/10 text-error"
+                  >
+                    Logout
+                  </button>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link to="/login" className="text-primary">
+                    Login
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/register">Register</Link>
+                </li>
+              </>
+            )}
+          </ul>
         </div>
       </div>
     </div>
   )
 }
 
-export default Navber
+export default Navbar
