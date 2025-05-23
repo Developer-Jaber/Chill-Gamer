@@ -28,7 +28,7 @@ const Watchlist = () => {
           </div>
         </div>
       </div>
-      <section className='mx-auto w-8/12'>
+      <section className='mx-auto w-11/12 md:w-8/12'>
         {
             watchlist.map(card=><ReviewCard key={card._id} review={card}></ReviewCard>)
         }

@@ -19,7 +19,7 @@ const GamesSwiper = ({ data }) => {
       <div className='bg-base-100 mt-14 hero'>
         <div className='text-center hero-content'>
           <div className='max-w-xl'>
-            <h1 className='font-bold text-3xl'>Top-Rated Games</h1>
+            <h1 className='font-bold text-2xl md:text-3xl'>Top-Rated Games</h1>
             <p className='py-6'>
             Experience the pinnacle of gaming with our Top-Rated Games section. Here, you’ll find the highest-rated games as voted by our community, showcasing exceptional gameplay, stunning graphics, and captivating stories. Dive into the best of the best and discover your next favorite game.
             </p>

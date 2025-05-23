@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import ReviewCard from '../Components/ReviewCard'
 import { AuthContext } from '../Auth/AuthProvaider'
-import NoData from './NoData'
+
 
 const MyReviews = () => {
     const {user} = useContext(AuthContext)
@@ -12,9 +12,7 @@ const MyReviews = () => {
         .then(data => setMyReview(data))
     },[])
 
-   if(myReview.length === 0){
-    return <NoData></NoData>
-   } 
+  
   return (
     <div>
       <div className='bg-base-100 hero'>
@@ -22,19 +20,13 @@ const MyReviews = () => {
           <div className='max-w-2xl'>
             <h1 className='font-bold text-4xl'>My Reviews</h1>
             <p className='py-6'>
-              Dive into the world of gaming with our comprehensive collection of
-              game reviews. Explore detailed insights, ratings, and personal
-              experiences shared by fellow gamers. Whether you're looking for
-              your next favorite game or want to share your thoughts on a recent
-              play, our review section offers a diverse range of opinions and
-              recommendations. Stay informed and find the best games to match
-              your preferences!
+            Welcome to the Your Review page on Chill Gamer, where you can view all the reviews you've submitted. This page is your personal space to keep track of the games you've reviewed and see how your opinions have contributed to the gaming community. Whether you're a seasoned reviewer or just starting out, this page provides a comprehensive overview of your contributions.
             </p>
             {/* <button className='btn btn-primary'>Explore Details</button> */}
           </div>
         </div>
       </div>
-      <section className='mx-auto w-8/12'>
+      <section className='mx-auto w-11/12 md:w-8/12'>
         {myReview.map(card => (
           <ReviewCard key={card._id} review={card}></ReviewCard>
         ))}

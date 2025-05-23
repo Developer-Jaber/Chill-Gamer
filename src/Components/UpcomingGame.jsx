@@ -11,8 +11,8 @@ const UpcomingGame = () => {
   return (
     <div>
       <div className='bg-gray-900 py-10 text-white'>
-        <div className='mx-auto mb-20 max-w-4xl'>
-          <h2 className='mb-4 font-bold text-3xl text-center'>
+        <div className='mx-auto mb-20 px-5 md:px-0 max-w-4xl'>
+          <h2 className='mb-4 font-bold text-2xl text-center md:text-3xl'>
             Upcoming Game Releases
           </h2>
           <p className='mb-4 text-center text-gray-400'>

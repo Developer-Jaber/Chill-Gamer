@@ -54,7 +54,7 @@ const AllReviwe = () => {
       <div className='bg-base-100 hero'>
         <div className='text-center hero-content'>
           <div className='max-w-2xl'>
-            <h1 className='font-bold text-4xl'>All Game Reviews</h1>
+            <h1 className='font-bold text-2xl lg:text-4xl'>All Game Reviews</h1>
             <p className='py-6'>
               Dive into the world of gaming with our comprehensive collection of
               game reviews. Explore detailed insights, ratings, and personal
@@ -68,7 +68,7 @@ const AllReviwe = () => {
           </div>
         </div>
       </div>
-      <section className='mx-auto w-8/12'>
+      <section className='mx-auto w-11/12 lg:w-8/12'>
         <div className='flex justify-between mb-4'>
           <div>
             <label htmlFor='genreFilter' className='mr-2'>
@@ -94,7 +94,7 @@ const AllReviwe = () => {
             </label>
             <select
               id='sortType'
-              className='select-bordered select'
+              className='w-40 md:w-52 select-bordered select'
               value={sortType}
               onChange={handleSortChange}
             >
